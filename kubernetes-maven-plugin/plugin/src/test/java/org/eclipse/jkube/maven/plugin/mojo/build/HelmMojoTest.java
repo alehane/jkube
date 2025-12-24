@@ -152,4 +152,17 @@ class HelmMojoTest {
     assertThat(helmMojo.helm.getIcon()).isEqualTo("https://my-icon");
   }
 
+  @Test
+  void executeInternal_withSkip() throws Exception {
+
+    // Given
+    helmMojo.skip = true;
+
+    // When
+    helmMojo.init();
+
+    // Then
+    assertThat(helmMojo.getHelm()).isNull();
+  }
+
 }
