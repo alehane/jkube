@@ -44,6 +44,10 @@ public class HelmMojo extends AbstractHelmMojo {
   public void init() throws MojoFailureException {
     super.init();
 
+    if (shouldSkip()) {
+      return;
+    }
+
     final File manifest = getKubernetesManifest();
     if (manifest == null || !manifest.isFile()) {
       logManifestNotFoundWarning(manifest);

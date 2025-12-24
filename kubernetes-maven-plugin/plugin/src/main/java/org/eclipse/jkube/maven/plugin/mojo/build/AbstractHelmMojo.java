@@ -41,6 +41,10 @@ public abstract class AbstractHelmMojo extends AbstractJKubeMojo {
   public void init() throws MojoFailureException {
     super.init();
 
+    if (shouldSkip()) {
+        return;
+    }
+
     try {
       helm = initHelmConfig(getDefaultHelmType(), javaProject, getKubernetesTemplate(), helm).build();
     } catch (IOException e) {
